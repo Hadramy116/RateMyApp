@@ -9,7 +9,8 @@ environment:
 
 dependencies:
   shared_preferences: ">=0.5.7 <2.0.0"
-  smooth_star_rating: ^1.1.1
+  # smooth_star_rating: ^1.1.1
+  flutter_rating_bar: ^3.0.1+1
   pedantic: ">=1.8.0 <2.0.0"
   flutter:
     sdk: flutter

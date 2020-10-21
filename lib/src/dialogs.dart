@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:rate_my_app/src/core.dart';
 import 'package:rate_my_app/src/style.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 /// A simple dialog button click listener.
 typedef RateMyAppDialogButtonClickListener = bool Function(
@@ -207,21 +207,23 @@ class RateMyAppStarDialogState extends State<RateMyAppStarDialog> {
             ),
           ),
           Directionality(
-            textDirection: Directionality.of(context),
-            child: SmoothStarRating(
-              onRated: (rating) {
-                setState(() => _currentRating = rating);
-              },
-              color: widget.starRatingOptions.starsFillColor,
-              borderColor: widget.starRatingOptions.starsBorderColor,
-              spacing: widget.starRatingOptions.starsSpacing,
-              size: widget.starRatingOptions.starsSize,
-              allowHalfRating: widget.starRatingOptions.allowHalfRating,
-              halfFilledIconData: widget.starRatingOptions.halfFilledIconData,
-              filledIconData: widget.starRatingOptions.filledIconData,
-              rating: _currentRating == null ? 0.0 : _currentRating.toDouble(),
-            ),
-          ),
+              textDirection: Directionality.of(context),
+              child: RatingBar(
+                initialRating:
+                    _currentRating == null ? 0.0 : _currentRating.toDouble(),
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  setState(() => _currentRating = rating);
+                },
+              )),
         ],
       ),
     );
