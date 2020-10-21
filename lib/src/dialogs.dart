@@ -206,18 +206,21 @@ class RateMyAppStarDialogState extends State<RateMyAppStarDialog> {
               textAlign: widget.dialogStyle.messageAlign,
             ),
           ),
-          SmoothStarRating(
-            onRated: (rating) {
-              setState(() => _currentRating = rating);
-            },
-            color: widget.starRatingOptions.starsFillColor,
-            borderColor: widget.starRatingOptions.starsBorderColor,
-            spacing: widget.starRatingOptions.starsSpacing,
-            size: widget.starRatingOptions.starsSize,
-            allowHalfRating: widget.starRatingOptions.allowHalfRating,
-            halfFilledIconData: widget.starRatingOptions.halfFilledIconData,
-            filledIconData: widget.starRatingOptions.filledIconData,
-            rating: _currentRating == null ? 0.0 : _currentRating.toDouble(),
+          Directionality(
+            textDirection: Directionality.of(context),
+            child: SmoothStarRating(
+              onRated: (rating) {
+                setState(() => _currentRating = rating);
+              },
+              color: widget.starRatingOptions.starsFillColor,
+              borderColor: widget.starRatingOptions.starsBorderColor,
+              spacing: widget.starRatingOptions.starsSpacing,
+              size: widget.starRatingOptions.starsSize,
+              allowHalfRating: widget.starRatingOptions.allowHalfRating,
+              halfFilledIconData: widget.starRatingOptions.halfFilledIconData,
+              filledIconData: widget.starRatingOptions.filledIconData,
+              rating: _currentRating == null ? 0.0 : _currentRating.toDouble(),
+            ),
           ),
         ],
       ),
