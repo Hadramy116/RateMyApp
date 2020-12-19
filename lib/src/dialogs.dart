@@ -206,21 +206,26 @@ class RateMyAppStarDialogState extends State<RateMyAppStarDialog> {
               textAlign: widget.dialogStyle.messageAlign,
             ),
           ),
-          RatingBar(
+          RatingBar.builder(
             initialRating:
                 _currentRating == null ? 0.0 : _currentRating.toDouble(),
             minRating: 1,
-            direction: Axis.horizontal,
+            direction: Axis.vertical,
             allowHalfRating: true,
+            unratedColor: Colors.amber.withAlpha(50),
             itemCount: 5,
-            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-            itemBuilder: (context, _) => Icon(
+            itemSize: 50.0,
+            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+            itemBuilder: (context, _) => const Icon(
               Icons.star,
               color: Colors.green,
             ),
             onRatingUpdate: (rating) {
-              setState(() => _currentRating = rating);
+              setState(() {
+                setState(() => _currentRating = rating);
+              });
             },
+            updateOnDrag: true,
           ),
         ],
       ),
