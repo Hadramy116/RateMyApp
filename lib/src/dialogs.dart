@@ -210,7 +210,7 @@ class RateMyAppStarDialogState extends State<RateMyAppStarDialog> {
             initialRating:
                 _currentRating == null ? 0.0 : _currentRating.toDouble(),
             minRating: 1,
-            direction: Axis.vertical,
+            direction: Axis.horizontal,
             allowHalfRating: true,
             unratedColor: Colors.amber.withAlpha(50),
             itemCount: 5,
